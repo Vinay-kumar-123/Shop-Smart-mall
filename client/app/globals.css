@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+.full-body{
+  font-family: inter_regular, fallback-inter_regular, Arial, sans-serif;
+  background-color: #f1f3f6;
+}
+.container{
+  width: 95%;
+  margin: auto;
+}
+.top-strip{
+  border-top: 1px solid rgb(194, 189, 189);
+  border-bottom: 1px solid rgb(203, 196, 196);
+ 
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fadeIn {
+  animation: fadeIn 0.2s ease-in-out;
+}
