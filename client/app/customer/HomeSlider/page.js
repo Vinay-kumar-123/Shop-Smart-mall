@@ -10,7 +10,7 @@ export default function HomeSlider() {
     <section className="w-full mt-4">
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
-        navigation
+        // navigation (this  shows arrow)
         pagination={{ clickable: true }}
         autoplay={{ delay: 3000, disableOnInteraction: false }}
         loop={true}
