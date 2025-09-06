@@ -7,7 +7,7 @@ import Image from "next/image";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 export default function HomeSlider() {
   return (
-    <section className="w-full mt-4">
+    <section className="w-full mt-4 ml-3 rounded-lg">
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
         // navigation (this  shows arrow)

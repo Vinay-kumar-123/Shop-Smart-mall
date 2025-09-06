@@ -4,51 +4,51 @@ export const Categories = [
     name: "Fashion",
     icon: "👕",
     subcategories: [
-      { name: "Men", href: "/fashion/men" },
-      { name: "Women", href: "/fashion/women" },
-      { name: "Kids", href: "/fashion/kids" },
+      { name: "Men", href: "#" },
+      { name: "Women", href: "#" },
+      { name: "Kids", href: "#" },
     ],
   },
   {
     name: "Electronics",
     icon: "💻",
     subcategories: [
-      { name: "Mobiles", href: "/electronics/mobiles" },
-      { name: "Laptops", href: "/electronics/laptops" },
-      { name: "Accessories", href: "/electronics/accessories" },
+      { name: "Mobiles", href: "#" },
+      { name: "Laptops", href: "#" },
+      { name: "Accessories", href: "#" },
     ],
   },
   {
     name: "Footwear",
     icon: "👟",
     subcategories: [
-      { name: "Men Shoes", href: "/footwear/men" },
-      { name: "Women Shoes", href: "/footwear/women" },
+      { name: "Men Shoes", href: "#" },
+      { name: "Women Shoes", href: "#" },
     ],
   },
   {
     name: "Home & Kitchen",
     icon: "🏠",
     subcategories: [
-      { name: "Furniture", href: "/home/furniture" },
-      { name: "Decor", href: "/home/decor" },
+      { name: "Furniture", href: "#" },
+      { name: "Decor", href: "#" },
     ],
   },
   {
-    name: "Bag",
-    icon: "🎒",
+    name: "Beauty",
+    icon: "💄",
     subcategories: [
-      { name: "Men", href: "/bag/men" },
-      { name: "Women", href: "/bag/women" },
-      { name: "Kids", href: "/bag/kids" },
+      { name: "Men", href: "#" },
+      { name: "Women", href: "#" },
+      { name: "Kids", href: "#" },
     ],
   },
   {
     name: "Groceries",
     icon: "🥦",
     subcategories: [
-      { name: "Fruits & Vegetables", href: "/groceries/fruits" },
-      { name: "Food Grains & Staples", href: "/groceries/staples" },
+      { name: "Fruits & Vegetables", href: "#" },
+      { name: "Food Grains & Staples", href: "#" },
     ],
   },
 ];
