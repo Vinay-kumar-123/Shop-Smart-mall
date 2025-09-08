@@ -1,5 +1,5 @@
 "use client";
-
+import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import {
   Dialog,
@@ -24,6 +24,8 @@ import {
 import { ProductData } from "../ProductData/page";
 import ProductCart from "../ProductCart/page";
 
+import { Search } from "lucide-react";
+
 const sortOptions = [
   { name: "Price: Low to High", href: "#", current: false },
   { name: "Price: High to Low", href: "#", current: false },
@@ -37,7 +39,7 @@ const filters = [
       { value: "white", label: "White", checked: false },
       { value: "Black", label: "Black", checked: false },
       { value: "beige", label: "Beige", checked: false },
-      { value: "blue", label: "Blue", checked: true },
+      { value: "blue", label: "Blue", checked: false },
       { value: "brown", label: "Brown", checked: false },
       { value: "green", label: "Green", checked: false },
       { value: "purple", label: "Purple", checked: false },
@@ -63,7 +65,7 @@ const singleFilter = [
       { value: "159-399", label: "₹159-399", checked: false },
       { value: "399-999", label: "₹399-999", checked: false },
       { value: "999-1999", label: "₹999-1999", checked: false },
-      { value: "1999-2999", label: "₹1999-2999", checked: true },
+      { value: "1999-2999", label: "₹1999-2999", checked: false },
       { value: "2999-10000", label: "₹2999-10000", checked: false },
     ],
   },
@@ -98,6 +100,24 @@ function classNames(...classes) {
 
 export default function Product() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const handleFilter = (value, sectionId) => {
+    const params = new URLSearchParams(searchParams.toString());
+    const filterValue = params.get(sectionId)?.split(",") || [];
+    if (filterValue.includes(value)) {
+      const update = filterValue.filter((item) => item !== value);
+      if (update.length === 0) {
+        params.delete(sectionId);
+      } else {
+        params.set(sectionId, update.join(","));
+      }
+    } else {
+      const update = [...filterValue, value];
+      params.set(sectionId, update.join(","));
+    }
+    router.push(`?${params.toString()}`);
+  };
 
   return (
     <div className="bg-white ">
@@ -167,6 +187,9 @@ export default function Product() {
                                   id={`filter-mobile-${section.id}-${optionIdx}`}
                                   name={`${section.id}[]`}
                                   type="checkbox"
+                                  onChange={() =>
+                                    handleFilter(option.value, section.id)
+                                  }
                                   className="col-start-1 row-start-1 appearance-none rounded-sm border border-gray-300 bg-white checked:border-indigo-600 checked:bg-indigo-600 indeterminate:border-indigo-600 indeterminate:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:checked:bg-gray-100 forced-colors:appearance-auto"
                                 />
                                 <svg
@@ -238,6 +261,9 @@ export default function Product() {
                                   id={`filter-${section.id}-${optionIdx}`}
                                   name={`${section.id}[]`}
                                   type="checkbox"
+                                  onChange={() =>
+                                    handleFilter(option.value, section.id)
+                                  }
                                   className="col-start-1 row-start-1 appearance-none rounded-sm border border-gray-300 bg-white checked:border-indigo-600 checked:bg-indigo-600 indeterminate:border-indigo-600 indeterminate:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:checked:bg-gray-100 forced-colors:appearance-auto"
                                 />
                                 <svg
@@ -380,6 +406,9 @@ export default function Product() {
                                   id={`filter-${section.id}-${optionIdx}`}
                                   name={`${section.id}[]`}
                                   type="checkbox"
+                                  onChange={() =>
+                                    handleFilter(option.value, section.id)
+                                  }
                                   className="col-start-1 row-start-1 appearance-none rounded-sm border border-gray-300 bg-white checked:border-indigo-600 checked:bg-indigo-600 indeterminate:border-indigo-600 indeterminate:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:checked:bg-gray-100 forced-colors:appearance-auto"
                                 />
                                 <svg
@@ -451,6 +480,9 @@ export default function Product() {
                                   id={`filter-${section.id}-${optionIdx}`}
                                   name={`${section.id}[]`}
                                   type="checkbox"
+                                  onChange={() =>
+                                    handleFilter(option.value, section.id)
+                                  }
                                   className="col-start-1 row-start-1 appearance-none rounded-sm border border-gray-300 bg-white checked:border-indigo-600 checked:bg-indigo-600 indeterminate:border-indigo-600 indeterminate:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:checked:bg-gray-100 forced-colors:appearance-auto"
                                 />
                                 <svg
