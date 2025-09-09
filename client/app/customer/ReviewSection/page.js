@@ -1,6 +1,8 @@
 "use client";
 import { useState } from "react";
 import { StarIcon } from "@heroicons/react/20/solid";
+import { Men } from "../ProductData/page";
+import ProductCart from "../ProductCart/page";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -40,14 +42,15 @@ export default function ReviewSection() {
   };
 
   return (
-    <div className="max-w-3xl mx-auto mt-10">
+    <div className="max-w-7xl mx-auto mt-10">
+
       {/* Add Review Form */}
       <h2 className="text-xl font-bold mb-4">Add a Review</h2>
       <form
         onSubmit={handleSubmit}
         className="bg-white p-6 rounded-lg shadow-md mb-8"
       >
-        {/* Name */}
+       
         <input
           type="text"
           placeholder="Your Name"
@@ -118,6 +121,13 @@ export default function ReviewSection() {
           </div>
         ))}
       </div>
+      {/* Semiliar Project */}
+      <section className="pt-10">
+        <h1 className="text-xl font-bold mb-4">Similer Products</h1>
+        <div className="p-3  grid md:grid-cols-4 grid-cols-2">
+          {Men.map((item, index) => <ProductCart key={index} item={item}/> )}
+        </div>
+      </section>
     </div>
   );
 }

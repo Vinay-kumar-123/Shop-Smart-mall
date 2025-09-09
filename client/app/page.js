@@ -5,13 +5,16 @@ import HomeSectionCart from "./customer/HomeSectionCart/page";
 import Footer from "@/components/Footer";
 import Product from "./customer/Product/page";
 import ProductDetails from "./customer/ProductDetails/page";
+import Cart from "./customer/cart/page";
+
 export default function Home() {
   return (
     <main>
       
       {/* <Homes/> */}
       {/* <Product/>  */}
-      <ProductDetails/>
+      {/* <ProductDetails/> */}
+      <Cart/>
       <Footer/>
     </main> 
   );
