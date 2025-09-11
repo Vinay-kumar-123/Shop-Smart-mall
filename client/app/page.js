@@ -6,15 +6,19 @@ import Footer from "@/components/Footer";
 import Product from "./customer/Product/page";
 import ProductDetails from "./customer/ProductDetails/page";
 import Cart from "./customer/cart/page";
+import CheckOut from "./customer/checkout/page";
 
 export default function Home() {
   return (
     <main>
-      
+      <div>
+        <CheckOut/>
+      </div>
       {/* <Homes/> */}
       {/* <Product/>  */}
       {/* <ProductDetails/> */}
-      <Cart/>
+      {/* <Cart/> */}
+      
       <Footer/>
     </main> 
   );
