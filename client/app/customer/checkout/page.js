@@ -19,7 +19,7 @@ export default function CheckOut() {
   const searchUrls = parseInt(searchParams.get(("step")) || 1);
   const [activeStep, setActiveStep] = React.useState(searchUrls);
   const handleBack = () => {
-    const backStep = activeStep -1;
+    const backStep = activeStep - 1;
     setActiveStep(backStep);
     router.push(`?step=${backStep}`)
   };
@@ -56,13 +56,13 @@ export default function CheckOut() {
               >
                 Back
               </Button>
-              <Box sx={{ flex: "1 1 auto" }} />
+              
             </Box>
           </React.Fragment>
         )}
       </Box>
       <div>
-        {activeStep === 2?<DeliveryAdress/>:<OrderSummary/>}
+        {activeStep === 1?<DeliveryAdress/>:<OrderSummary/>}
       </div>
     </div>
   );
