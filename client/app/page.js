@@ -7,18 +7,19 @@ import Product from "./customer/Product/page";
 import ProductDetails from "./customer/ProductDetails/page";
 import Cart from "./customer/cart/page";
 import CheckOut from "./customer/checkout/page";
+import Orders from "./customer/Orders/page";
 
 export default function Home() {
   return (
     <main>
-      <div>
+      {/* <div>
         <CheckOut/>
-      </div>
+      </div> */}
       {/* <Homes/> */}
       {/* <Product/>  */}
       {/* <ProductDetails/> */}
       {/* <Cart/> */}
-      
+      <Orders/>
       <Footer/>
     </main> 
   );

@@ -39,3 +39,24 @@
 .animate-fadeIn {
   animation: fadeIn 0.2s ease-in-out;
 }
+
+
+
+
+.saved-address-scroll::-webkit-scrollbar {
+  width: 8px; 
+}
+
+.saved-address-scroll::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+  border-radius: 10px;
+}
+
+.saved-address-scroll::-webkit-scrollbar-thumb {
+  background: #2874f0; 
+  border-radius: 10px;
+}
+
+.saved-address-scroll::-webkit-scrollbar-thumb:hover {
+  background: #0d47a1; 
+}
