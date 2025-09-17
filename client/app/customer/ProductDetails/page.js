@@ -1,6 +1,7 @@
 "use client";
 import { StarIcon } from "@heroicons/react/20/solid";
 import ReviewSection from "../ReviewSection/page";
+import Link from "next/link";
 
 const product = {
   name: "Basic Tee 6-Pack",
@@ -194,18 +195,22 @@ export default function ProductDetails() {
                 </div>
               </div>
 
-              {/* Description */}
+            
               <p className="mt-6 text-gray-600">{product.description}</p>
             </div>
 
-            {/* Buttons */}
-            <div className="mt-8 flex gap-4">
-              <button className="flex-1 bg-indigo-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-700 transition">
+            
+            <div className="mt-4 flex gap-4 w-full">
+             <Link href="/customer/checkout">
+              <button className=" w-[200px] flex-1 bg-indigo-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-700 transition cursor-pointer">
                 Buy Now
               </button>
-              <button className="flex-1 bg-yellow-500 text-white py-3 rounded-lg font-semibold hover:bg-yellow-600 transition">
+              </Link>
+              <Link href="/customer/cart">
+              <button className="w-[200px]  flex-1 bg-yellow-500 text-white py-3 rounded-lg font-semibold hover:bg-yellow-600 transition cursor-pointer">
                 Add to Cart
               </button>
+              </Link>
             </div>
           </div>
 

@@ -23,7 +23,7 @@ export default function CategoriesDropdown() {
             {cat.subcategories.map((sub, i) => (
               <li key={i} className="px-4 py-2 hover:bg-gray-100 transition">
                 <Link
-                  href={sub.href}
+                  href={`/customer/Product?category=${sub.name.toLowerCase()}`}
                   className="block text-gray-700 hover:text-blue-600"
                 >
                   {sub.name}

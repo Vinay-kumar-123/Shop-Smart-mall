@@ -1,4 +1,5 @@
 import CartItem from "@/components/CartItem";
+import Link from "next/link";
 
 export default function Cart() {
   return (
@@ -44,10 +45,11 @@ export default function Cart() {
           <span>₹500</span>
         </div>
 
-       
+       <Link href="/customer/checkout">
         <button className="w-full mt-5 bg-orange-500 text-white py-2 rounded-lg font-semibold hover:bg-orange-600 transition">
           CHECKOUT
         </button>
+        </Link>
       </div>
     </div>
   );

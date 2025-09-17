@@ -1,5 +1,8 @@
-export default function ProductCart({item}) {
+import Link from "next/link";
+
+export default function ProductCart({ item}) {
   return (
+    <Link href={`/customer/ProductDetails?id=${item.id}`}>
     <div
       className="w-[15rem] m-3 transition-all cursor-pointer rounded-lg overflow-hidden  group 
              transition-transform duration-300 ease-out 
@@ -22,9 +25,14 @@ export default function ProductCart({item}) {
         <div className="flex items-center space-x-2 mt-2">
           <p className="font-semibold text-lg">₹{item.price}</p>
           <p className="line-through opacity-50">₹{item.oldPrice}</p>
-          <p className="text-green-600 font-semibold"> {Math.round(((item.oldPrice - item.price) / item.oldPrice) * 100)}% off</p>
+          <p className="text-green-600 font-semibold">
+            {" "}
+            {Math.round(((item.oldPrice - item.price) / item.oldPrice) * 100)}%
+            off
+          </p>
         </div>
       </div>
     </div>
+    </Link>
   );
 }

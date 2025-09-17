@@ -12,19 +12,23 @@ import OrderDetails from "./customer/OrderDetails/page";
 
 export default function Home() {
   return (
-    <main>
+    <>
+      
+      
+     <main>
       <div>
-        
-
-        <Homes />
+         <Homes />
+         
+       
         {/* <Product />
         <ProductDetails />
         <CheckOut/>
-        <Cart />
+        
         <Orders />
         <OrderDetails /> */}
       </div>
       
-    </main>
+    </main> 
+    </>
   );
 }

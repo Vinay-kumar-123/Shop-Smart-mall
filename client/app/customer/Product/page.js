@@ -21,7 +21,7 @@ import {
   PlusIcon,
   Squares2X2Icon,
 } from "@heroicons/react/20/solid";
-import { ProductData } from "../ProductData/page";
+import { ProductData, Men,  Women, Electronics, Others } from "../ProductData/page";
 import ProductCart from "../ProductCart/page";
 
 import { Search } from "lucide-react";
@@ -102,6 +102,13 @@ export default function Product() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const router = useRouter();
   const searchParams = useSearchParams();
+  const category = searchParams.get("category");
+  
+  let filteredProducts = ProductData;
+  if(category === "men" ) filteredProducts = Men;
+  if (category === "women" ) filteredProducts = Women;
+  if (category === "electronics") filteredProducts = Electronics;
+  if (category === "others") filteredProducts = Others;
   const handleFilter = (value, sectionId) => {
     const params = new URLSearchParams(searchParams.toString());
     const filterValue = params.get(sectionId)?.split(",") || [];
@@ -521,10 +528,10 @@ export default function Product() {
                 ))}
               </form>
 
-              {/* Product grid */}
+              
               <div className="lg:col-span-4 w-full">
                 <div className="flex justify-center flex-wrap bg-white py-5">
-                  {ProductData.map((items, index) => (
+                  {filteredProducts.map((items, index) => (
                     <ProductCart key={index} item={items} />
                   ))}
                 </div>

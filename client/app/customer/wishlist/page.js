@@ -69,8 +69,8 @@ export default function NavbarActions() {
               </MenuItem>
               <MenuItem>
                 <a
-                  href="#"
-                  className="block px-4 py-2 text-sm text-gray-300 data-focus:bg-white/5 data-focus:outline-hidden"
+                  href="/customer/Orders"
+                  className="block px-4 py-2 text-sm text-gray-300 data-focus:bg-white/5 data-focus:outline-hidden hover:text-blue-600"
                 >
                   Order
                 </a>
@@ -86,7 +86,7 @@ export default function NavbarActions() {
             </MenuItems>
           </Menu>
         </li>
-
+        <Link href="/customer/cart">
         <li>
           <Tooltip title="cart" arrow>
             <IconButton aria-label="cart">
@@ -96,6 +96,7 @@ export default function NavbarActions() {
             </IconButton>
           </Tooltip>
         </li>
+        </Link>
       </ul>
     </div>
   );

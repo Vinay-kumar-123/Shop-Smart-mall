@@ -64,9 +64,9 @@ export default function SideBar() {
                   {cat.subcategories.map((sub, i) => (
                     <li key={i} className="py-1">
                       <Link
-                        href={sub.href}
+                        href={`/customer/Product?category=${sub.name.toLowerCase()}`}
                         className="text-gray-700 hover:text-green-600 block"
-                        onClick={() => setSidebarOpen(false)} // mobile pe click -> close
+                        onClick={() => setSidebarOpen(false)}
                       >
                         {sub.name}
                       </Link>

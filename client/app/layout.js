@@ -10,7 +10,7 @@ export const metadata = {
     default: "Smart-mall",
     template: "%s | Smart-mall",
   },
-  description: "Welcome to my new project",
+  description: "Welcome to Smart mall",
 };
 
 export default function RootLayout({ children }) {
@@ -18,7 +18,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className="full-body">
         <Navbar/>
-        <main>{children}</main>
+        <main className="min-h-screen">{children}</main>
         <Footer/>
       </body>
     </html>
