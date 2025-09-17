@@ -39,7 +39,7 @@ export default function Orders() {
               </div>
             </div>
           </Grid>
-          <Grid item xs={12} md={9}>
+          <Grid item xs={12} md={9} sx={{width: '80%'}}>
           <div className="space-y-6">
             <OrderCart />
             <OrderCart />
