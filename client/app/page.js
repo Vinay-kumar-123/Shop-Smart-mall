@@ -13,22 +13,9 @@ import OrderDetails from "./customer/OrderDetails/page";
 export default function Home() {
   return (
     <>
-      
-      
-     <main>
-      <div>
-         <Homes />
-         
-       
-        {/* <Product />
-        <ProductDetails />
-        <CheckOut/>
-        
-        <Orders />
-        <OrderDetails /> */}
-      </div>
-      
-    </main> 
+      <main>
+        <Homes />
+      </main>
     </>
   );
 }
