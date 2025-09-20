@@ -1,7 +1,7 @@
 import { required } from "joi";
 import mongoose from "mongoose";
 
-const reviewsSchema = new mongoose.Schema({
+const ratingsSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "users",
@@ -13,8 +13,8 @@ const reviewsSchema = new mongoose.Schema({
     required: true,
   },
 
-  review: {
-    type: String,
+  rating: {
+    type: Number,
     required: true,
   },
 
@@ -24,5 +24,5 @@ const reviewsSchema = new mongoose.Schema({
   },
 });
 
-const Reviews = mongoose.model("reviews", reviewsSchema);
-module.exports = Reviews;
+const Rating = mongoose.model("ratings", ratingsSchema);
+module.exports = Rating;

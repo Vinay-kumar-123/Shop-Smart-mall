@@ -1,39 +1,69 @@
-
 import { required } from "joi";
 import mongoose from "mongoose";
 
 const ProductSchema = new mongoose.Schema({
-    title:{
-        type:String, 
-        required: true,
+  title: {
+    type: String,
+    required: true,
+  },
+  description: {
+    type: String,
+    required: true,
+  },
+  price: {
+    type: Number,
+    required: true,
+  },
+  discountedPrice: {
+    type: Number,
+  },
+  discountedPersent: {
+    type: Number,
+  },
+  quantity: {
+    type: Number,
+    required: true,
+  },
+  brand: {
+    type: String,
+  },
+  color: {
+    type: String,
+  },
+  sizes: [
+    {
+      name: { type: String },
+      quantity: { type: String },
     },
-    description:{
-        type:String, 
-        required:true,
+  ],
+  imageUrl: {
+    type: String,
+  },
+  ratings: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "ratings",
     },
-    price:{
-        type: Number,
-        required: true,
+  ],
+  reviews: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "reviews",
     },
-    discountedPrice:{
-        type: Number,
-        
-    },
-    discountedPersent:{
-        type: Number,
-        
-    },
-    quantity:{
-        type: Number,
-        required: true,
-    },
-    userId: {
-        type:mongoose.Schema.Types.ObjectId, 
-        ref:"users",
-        required: true,
-    },
-    
+  ],
+  numRatings: {
+    type: Number,
+    default: 0,
+  },
+  category: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "categories",
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now(),
+  },
 });
 
-const OrdersItems = mongoose.model('orderItems', OrderItemsSchema);
-module.exports = OrdersItems;
+const product = mongoose.model("products", ProductSchema);
+module.exports = product;
