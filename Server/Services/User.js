@@ -1,7 +1,7 @@
 import { User } from "../models/User.js";
 import jwt from "jsonwebtoken"
 
-export const createUser = async (req, res) => {
+export const register = async (req, res) => {
   try {
     const { firstName, lastName, email, password } = req.body;
     if (!firstName || !lastName || !email || !password) {
@@ -37,7 +37,7 @@ export const createUser = async (req, res) => {
 };
 
 
-export const findUserByEmail = async(req, res) => {
+export const login = async(req, res) => {
   try {
     const {email, password} = req.body;
     if(!email || !password){
