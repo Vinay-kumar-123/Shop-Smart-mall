@@ -12,6 +12,7 @@ const userSchema = new mongoose.Schema({
    paymentInfo:[{type:mongoose.Schema.Types.ObjectId, ref:"payment_info"}],
    ratings:[{type:mongoose.Schema.Types.ObjectId, ref:"ratings"}],
    reviews:[{type:mongoose.Schema.Types.ObjectId, ref:"reviews"}],
+   refreshTokens: [{ token: String, createdAt: { type: Date, default: Date.now } }],
    createdAt:{type: Date, default:Date.now()}
 })
 
