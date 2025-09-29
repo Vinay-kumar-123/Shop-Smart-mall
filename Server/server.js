@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import connectToMongo from "./config/db.js";
 import authRoutes from "./routes/authRoutes.js";
+import cartRoutes from "./routes/cartRoutes.js";
 import { requireAuth } from "./middlewares/authMiddleware.js";
 dotenv.config();
 const PORT= process.env.PORT || 3000;
@@ -13,6 +14,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use("/api/auth/user", authRoutes);
+app.use("/api/auth/cart", cartRoutes);
 
 
 

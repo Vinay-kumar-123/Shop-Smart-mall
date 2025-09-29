@@ -1,4 +1,4 @@
-import { ref, required } from "joi";
+
 import mongoose from "mongoose";
 
 const cartSchema = new mongoose.Schema({
@@ -10,5 +10,5 @@ const cartSchema = new mongoose.Schema({
     discounte: {type:Number, required: true,default: 0 },
 })
 
-const cart = mongoose.model("cart", cartSchema);
-module.exports = cart;
+const Cart = mongoose.model("cart", cartSchema);
+export default Cart;

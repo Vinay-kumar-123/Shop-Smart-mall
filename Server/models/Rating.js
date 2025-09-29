@@ -1,4 +1,4 @@
-import { required } from "joi";
+
 import mongoose from "mongoose";
 
 const ratingsSchema = new mongoose.Schema({
@@ -25,4 +25,4 @@ const ratingsSchema = new mongoose.Schema({
 });
 
 const Rating = mongoose.model("ratings", ratingsSchema);
-module.exports = Rating;
+export default Rating;

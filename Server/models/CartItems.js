@@ -1,5 +1,5 @@
 
-import { required } from "joi";
+
 import mongoose from "mongoose";
 
 const cartItemsSchema = new mongoose.Schema({
@@ -37,5 +37,5 @@ const cartItemsSchema = new mongoose.Schema({
     },
 });
 
-const cartItems = mongoose.model('cartItems', cartItemsSchema);
-module.exports = cartItems;
+const CartItems = mongoose.model('cartItems', cartItemsSchema);
+export default CartItems;

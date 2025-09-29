@@ -1,5 +1,5 @@
 
-import { required } from "joi";
+
 import mongoose from "mongoose";
 
 const categorySchema = new mongoose.Schema({
@@ -20,4 +20,4 @@ const categorySchema = new mongoose.Schema({
 });
 
 const category = mongoose.model('categories', categorySchema);
-module.exports = category;
+export default category;

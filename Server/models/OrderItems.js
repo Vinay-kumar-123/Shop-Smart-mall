@@ -1,5 +1,5 @@
 
-import { required } from "joi";
+
 import mongoose from "mongoose";
 
 const OrderItemsSchema = new mongoose.Schema({
@@ -35,4 +35,4 @@ const OrderItemsSchema = new mongoose.Schema({
 });
 
 const OrdersItems = mongoose.model('orderItems', OrderItemsSchema);
-module.exports = OrdersItems;
+export default OrdersItems;

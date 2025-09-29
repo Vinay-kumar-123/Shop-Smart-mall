@@ -1,4 +1,4 @@
-import { required } from "joi";
+
 import mongoose from "mongoose";
 
 const ProductSchema = new mongoose.Schema({
@@ -65,5 +65,5 @@ const ProductSchema = new mongoose.Schema({
   },
 });
 
-const product = mongoose.model("products", ProductSchema);
-module.exports = product;
+const Product = mongoose.model("products", ProductSchema);
+export default Product;
