@@ -2,8 +2,11 @@
 import { StarIcon } from "@heroicons/react/20/solid";
 import ReviewSection from "../ReviewSection/page";
 import Link from "next/link";
-import { useCart } from "@/context/cartContext";
+import { useCart } from "@/hooks/useCart";
+import { toast } from "react-toastify";
+import { useState } from "react";
 const product = {
+  _id: "prod123",
   name: "Basic Tee 6-Pack",
   price: "$192",
   discountPrice: "$149",
@@ -73,6 +76,16 @@ function classNames(...classes) {
 
 export default function ProductDetails() {
   const {addToCart} = useCart();
+  const [selectedSize, setSelectedSize] = useState(product.sizes[0].name);
+  const [selectedColor, setSelectedColor] = useState(product.colors[0].id);
+  const handleAddToCart = async () => {
+    try {
+      await addToCart({ productId: product._id, size: selectedSize, color: selectedColor, quantity: 1 });
+      toast.success("Added to cart!");
+    } catch (err) {
+      toast.error("Failed to add to cart");
+    }
+  };
   return (
     <div className="bg-gray-50 min-h-screen py-10">
       <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 ">
@@ -165,6 +178,7 @@ export default function ProductDetails() {
                 <div className="flex gap-3 mt-2">
                   {product.colors.map((color) => (
                     <button
+                      onClick={() => setSelectedColor(color.id)}
                       key={color.id}
                       className={classNames(
                         color.classes,
@@ -181,6 +195,7 @@ export default function ProductDetails() {
                 <div className="flex gap-3 mt-2">
                   {product.sizes.map((size) => (
                     <button
+                      onClick={() => setSelectedSize(size.name)}
                       key={size.name}
                       disabled={!size.inStock}
                       className={classNames(
@@ -208,7 +223,7 @@ export default function ProductDetails() {
               </button>
               </Link>
               <Link href="/customer/cart">
-              <button onClick={() => addToCart({ productId: product._id, size: "M", quantity: 1})} className="w-[200px]  flex-1 bg-yellow-500 text-white py-3 rounded-lg font-semibold hover:bg-yellow-600 transition cursor-pointer">
+              <button onClick={handleAddToCart} className="w-[200px]  flex-1 bg-yellow-500 text-white py-3 rounded-lg font-semibold hover:bg-yellow-600 transition cursor-pointer">
                 Add to Cart
               </button>
               </Link>

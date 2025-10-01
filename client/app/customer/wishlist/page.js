@@ -22,7 +22,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
   },
 }));
 
-function stringAvatar(name = "User") {
+function stringAvatar(name = "") {
   const parts = name.split(" ");
   if(parts.length >= 2){
     return { children: `${parts[0][0]}${parts[1][0]}`.toUpperCase() };
@@ -35,10 +35,11 @@ function stringAvatar(name = "User") {
 }
 
 export default function NavbarActions() {
-  const { user, signout ,getUser} = useAuth();
-  useEffect(() => {
-    getUser();
-  }, [getUser]);
+  const { user, getUser, signout } = useAuth();
+   useEffect(() => {
+    const token = localStorage.getItem("token");
+    if(token) getUser();
+  }, []);
   const handleLogout = async () => {
     try {
       await signout().unwrap();

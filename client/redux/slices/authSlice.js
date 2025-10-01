@@ -8,12 +8,13 @@ export const fetchUser = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const token = localStorage.getItem("token");
+      if (!token) return rejectWithValue("No token found");
       const res = await api.get("/api/auth/me", {
         headers: { Authorization: `Bearer ${token}` },
       });
       return res.data.user;
     } catch (err) {
-      return rejectWithValue(null);
+      return rejectWithValue(err.response?.data?.message || "Failed to fetch user");
     }
   }
 );
@@ -24,7 +25,7 @@ export const loginUser = createAsyncThunk(
     try {
       const res = await api.post("/api/auth/user/login", { email, password });
       localStorage.setItem("token", res.data.accessToken);
-      return res.data;
+      return res.data.isUser;
     } catch (err) {
       return rejectWithValue(err.response.data.message || "Login failed");
     }

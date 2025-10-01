@@ -3,9 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { 
     loginUser ,
     signupUser,
-   logoutUser,
-   fetchUser,
-   refreshToken,
+    logoutUser,
+    fetchUser,
+    refreshToken,
 } from "@/redux/slices/authSlice";
 
 
