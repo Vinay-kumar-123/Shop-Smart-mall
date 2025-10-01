@@ -1,19 +1,15 @@
-// utils/http.js
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:8000", // server
-  withCredentials: true, // important: allow cookies to be sent
+  baseURL: "http://localhost:8000",
+  withCredentials: true,
 });
 
 let isRefreshing = false;
 let pendingRequests = [];
 
 const processQueue = (err, token = null) => {
-  pendingRequests.forEach((prom) => {
-    if (err) prom.reject(err);
-    else prom.resolve(token);
-  });
+  pendingRequests.forEach((prom) => (err ? prom.reject(err) : prom.resolve(token)));
   pendingRequests = [];
 };
 
@@ -23,32 +19,27 @@ api.interceptors.response.use(
     const originalRequest = err.config;
     if (err.response?.status === 401 && !originalRequest._retry) {
       if (isRefreshing) {
-        // queue request until token refresh finishes
         return new Promise((resolve, reject) => {
           pendingRequests.push({ resolve, reject });
-        })
-          .then((token) => {
-            originalRequest.headers["Authorization"] = "Bearer " + token;
-            return axios(originalRequest);
-          })
-          .catch((e) => Promise.reject(e));
+        }).then((token) => {
+          originalRequest.headers["Authorization"] = `Bearer ${token}`;
+          return axios(originalRequest);
+        });
       }
 
       originalRequest._retry = true;
       isRefreshing = true;
 
       try {
-        const resp = await api.post("/api/auth/refresh"); // cookie will be sent
+        const resp = await api.get("/api/auth/user/refresh");
         const newAccessToken = resp.data.accessToken;
-        // set header for original request and retry
-        originalRequest.headers["Authorization"] = "Bearer " + newAccessToken;
+        originalRequest.headers["Authorization"] = `Bearer ${newAccessToken}`;
         processQueue(null, newAccessToken);
         isRefreshing = false;
         return axios(originalRequest);
       } catch (refreshErr) {
         processQueue(refreshErr, null);
         isRefreshing = false;
-        // optionally redirect to login page
         return Promise.reject(refreshErr);
       }
     }

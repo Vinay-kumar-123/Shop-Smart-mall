@@ -72,11 +72,15 @@ export const removeFromCart = async(req, res) => {
         const item = await CartItems.findOne({_id: cartItemId, userId});
         if(!item) return res.status(404).json({ message: "Item not found" });
         const cart = await Cart.findById(item.cart);
-        cart.CartItems.pull(cartItemId);
+        cart.cartItems.pull(cartItemId);
         await cart.save();
         await CartItems.deleteOne({ _id: cartItemId });
         const updatedCart = await updateCartTotals(cart);
-        return res.status(200).json({ success: true, cart: updatedCart });
+        return res.status(200).json({
+             success: true, 
+             message: "Item removed from cart!",
+             cart: updatedCart 
+            });
     } catch (error) {
         return res.status(500).json({ message: error.message });
     }
@@ -94,6 +98,30 @@ export const getCart = async(req, res) => {
             success: true,
             cart
         });
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
+}
+
+
+export const updateCartItem = async(req, res)=> {
+    const{cartItemId} = req.params;
+    const{ quantity } = req.body;
+    const userId = req.user._id;
+    try {
+        const item = await CartItems.findOne({ _id: cartItemId, userId});
+        if(!item) return res.status(400).json({
+            success: false,
+            message: "Item not found"
+        })
+        item.quantity = quantity;
+        await item.save();
+        const cart = await Cart.findById(item.cart);
+        const updatedCart = await updateCartTotals(cart);
+        return res.status(200).json({
+            success: true,
+            cart: updatedCart
+        })
     } catch (error) {
         return res.status(500).json({ message: error.message });
     }

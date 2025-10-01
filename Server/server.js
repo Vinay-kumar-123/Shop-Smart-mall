@@ -9,8 +9,9 @@ import { requireAuth } from "./middlewares/authMiddleware.js";
 dotenv.config();
 const PORT= process.env.PORT || 3000;
 const app = express();
-app.use(cors({origin: "http://localhost:3000", credentials:true}))
 app.use(express.json());
+app.use(cors({origin: "http://localhost:3000", credentials:true}))
+
 app.use(cookieParser());
 
 app.use("/api/auth/user", authRoutes);
@@ -18,7 +19,7 @@ app.use("/api/auth/cart", cartRoutes);
 
 
 
-app.get("/api/me", requireAuth, async(req, res) => {
+app.get("/api/auth/me", requireAuth, async(req, res) => {
     res.json({ message: "Protected data", user: req.user });
 })
 app.listen(PORT, ()=>{

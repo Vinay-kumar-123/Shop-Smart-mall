@@ -2,7 +2,7 @@
 import { StarIcon } from "@heroicons/react/20/solid";
 import ReviewSection from "../ReviewSection/page";
 import Link from "next/link";
-
+import { useCart } from "@/context/cartContext";
 const product = {
   name: "Basic Tee 6-Pack",
   price: "$192",
@@ -72,6 +72,7 @@ function classNames(...classes) {
 }
 
 export default function ProductDetails() {
+  const {addToCart} = useCart();
   return (
     <div className="bg-gray-50 min-h-screen py-10">
       <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 ">
@@ -207,7 +208,7 @@ export default function ProductDetails() {
               </button>
               </Link>
               <Link href="/customer/cart">
-              <button className="w-[200px]  flex-1 bg-yellow-500 text-white py-3 rounded-lg font-semibold hover:bg-yellow-600 transition cursor-pointer">
+              <button onClick={() => addToCart({ productId: product._id, size: "M", quantity: 1})} className="w-[200px]  flex-1 bg-yellow-500 text-white py-3 rounded-lg font-semibold hover:bg-yellow-600 transition cursor-pointer">
                 Add to Cart
               </button>
               </Link>

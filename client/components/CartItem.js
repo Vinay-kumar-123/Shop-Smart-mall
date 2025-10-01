@@ -1,17 +1,28 @@
 "use client";
 import { useState } from "react";
 import { MinusIcon, PlusIcon, TrashIcon } from "@heroicons/react/24/outline";
-
-export default function CartItem() {
-  const [quantity, setQuantity] = useState(1);
-  const handleRemove = () =>{
-    alert("Item removed from cart!");
+import { useCart } from "@/hooks/useCart";
+import { toast } from "react-toastify";
+export default function CartItem({ item }) {
+  const {updateQty, removeFromCart} = useCart();
+  const [quantity, setQuantity] = useState(item.quantity);
+  const price = item.price;
+  const dprice = item.discountedPrice || item.price; ;
+  const off = Math.round(((price - dprice)/price)*100);
+  const handleRemove = async() =>{
+    await removeFromCart(item._id);
+    toast.success(response.data.message);
   }
-  const handleDecrease = () => {
-     if(quantity > 1) setQuantity(quantity - 1);
+  const handleDecrease = async() => {
+    if(quantity <= 1) return ;
+    const q = quantity -1
+    setQuantity(q);
+    await updateQty(item._id, q);
   }
-  const handleIncrease = () => {
-    setQuantity(quantity + 1);
+  const handleIncrease = async() => {
+    const q = quantity + 1
+    setQuantity(q);
+    await updateQty(item._id, q);
   }
   return (
     <>
@@ -19,17 +30,18 @@ export default function CartItem() {
         <div className="w-24 h-24 sm:w-32 sm:h-32 flex-shrink-0">
           <img
             className="w-full h-full object-cover object-top rounded-md"
-            src="/men1.jpg"
+            src={item?.product?.imageUrl}
+            alt={item?.product?.title }
           />
         </div>
         <div className="flex flex-col flex-1">
-          <h2 className="font-medium text-lg text-gray-800">Men White Shirt</h2>
-          <p className="text-sm text-gray-500 mt-1">Size: L, White</p>
+          <h2 className="font-medium text-lg text-gray-800">{item?.product?.title}</h2>
+          <p className="text-sm text-gray-500 mt-1">Size: {item.size}</p>
           <div className="flex items-center gap-3 mt-2">
-            <p className="text-lg font-bold text-gray-800">₹500</p>
-            <p className="line-through text-sm text-gray-400">₹1700</p>
+            <p className="text-lg font-bold text-gray-800">₹{dprice}</p>
+            <p className="line-through text-sm text-gray-400">₹{price}</p>
             <p className="text-sm font-semibold text-green-600">
-              {Math.round(((1700 - 500) / 1700) * 100)}% off
+              {off}% off
             </p>
           </div>
           <div className="flex items-center justify-between mt-4">
